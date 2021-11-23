@@ -86,7 +86,7 @@ unsigned long long itc_toInt(string number){
 string itc_slice_str(string number, int nachalo, int konec){
     long long dlina = itc_len(number);
     string result;
-    if((konec > dlina) and (nachalo < dlina)){
+    if((konec > dlina) && (nachalo < dlina)){
         for(int i = nachalo; i < dlina; i++){
             result = result + number[i];
         }
