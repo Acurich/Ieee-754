@@ -181,10 +181,54 @@ string bindrob(string number){
     return chislo;
 }
 
-
+string print(string number){
+    string znak = "0", result;
+    if(number[0] == '-'){
+        znak = "1";
+    }
+    if(number == "0" or number == "0.0" or number == "0,0" or itc_toInt(number) == 0){
+        result = znak;
+        for(int i = 0; i < 31; i++){
+            result += '0';
+        }
+    }
+    else if (number == "nan" or number == "NaN" or number == "NAN")
+	{
+		result = znak;
+		for (int i = 0; i < 31; i++){
+			result += '1';
+		}
+	}
+	else if (number == "-inf" or number == "-INF" or number == "-Inf" or number == "-infinity" or number == "-INFINITY" or number == "-Infinity"){
+        znak = "1";
+        result = znak;
+		for (int i = 0; i < 8; i++){
+			result += '1';
+		}
+		for (int i = 0; i < 23; i++){
+			result += '0';
+		}
+	}
+	    else if (number == "inf" or number == "INF" or number == "Inf" or number == "infinity" or number == "INFINITY" or number == "Infinity" or number == "+inf" or number == "+INF" or number == "+Inf" or number == "+infinity" or number == "+INFINITY" or number == "+Infinity")
+	{
+		result = znak;
+		for (int i = 0; i < 8; i++){
+			result += "1";
+		}
+		for (int i = 0; i < 23; i++){
+			result += "0";
+		}
+	}
+	else{
+        result += znak;
+        result += expon(number);
+        result += mantissa(number);
+	}
+	return result;
+}
 
 int main() {
     string number;
     cin >> number;
-    cout << expon(number);
+    cout << print(number);
 }
